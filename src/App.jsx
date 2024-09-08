@@ -17,13 +17,19 @@ import WishList from "./Components/WishList/WishList";
 import Payment from "./Components/Payment/Payment";
 
 
-const basename = '/thefinal'; // Use your repository name here
 
 const router = createHashRouter([
   {path:'' , element:<Layout/> , children:[
     {path: 'register' , element:<Register/>},
     {path: 'login' , element:<Login/>},
-    {path:'products' , element:
+    {index:  true , element:
+    <ProtectedRoute>
+
+          <Products/>
+
+    </ProtectedRoute>
+  },
+  {path:'products' , element:
     <ProtectedRoute>
 
           <Products/>
@@ -65,7 +71,7 @@ const router = createHashRouter([
      </ProtectedRoute>
     },
   ]},
-], { basename });
+], );
 
 
 const reactQueryconfig = new QueryClient(); //class
